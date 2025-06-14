@@ -1,0 +1,21 @@
+# Python
+__pycache__
+
+# Virtual environment
+venv
+
+# Django
+*.sqlite3
+
+# Static & media 
+media/
+staticfiles/
+
+# Env files 
+.env
+.env.*
+
+# Node and Tailwind
+node_modules/
+build/
+dist/

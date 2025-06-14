@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.project-card {
+    width: 300px;
+    margin: 1rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+h1, h2 {
+    text-align: center;
+}
