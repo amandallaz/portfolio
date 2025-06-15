@@ -45,10 +45,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     ### Added
     "portfolio",
-    "tailwind",
     "theme",
-    "django_browser_reload"
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        "tailwind",
+        "django_browser_reload",
+    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -58,9 +62,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
-
 ]
+
+if DEBUG:
+    MIDDLEWARE += ["django_browser_reload.middleware.BrowserReloadMiddleware"]
 
 ROOT_URLCONF = "main_site.urls"
 

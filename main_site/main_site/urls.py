@@ -26,9 +26,9 @@ from django.urls import include, path # auto page refresh
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', homepage, name='homepage'),
-    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [path("__reload__/", include("django_browser_reload.urls"))]
