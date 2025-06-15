@@ -3,19 +3,18 @@ __pycache__
 
 # Virtual environment
 venv
+.env
 
 # Django
 *.sqlite3
+*.log
 
 # Static & media 
 media/
 staticfiles/
 
-# Env files 
-.env
-.env.*
-
 # Node and Tailwind
 node_modules/
 build/
 dist/
+# theme/static/css/dist/ # small, will use in prod
