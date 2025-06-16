@@ -10,7 +10,7 @@ venv
 *.log
 
 # Static & media 
-media/
+# media/
 staticfiles/
 
 # Node and Tailwind
