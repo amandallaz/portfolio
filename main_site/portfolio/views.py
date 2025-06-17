@@ -11,3 +11,7 @@ def homepage(request):
         'projects': projects,
         'active_category': category,
     })
+
+
+def about(request):
+    return render(request, "portfolio/about.html")

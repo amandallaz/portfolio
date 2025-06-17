@@ -18,7 +18,8 @@ module.exports = {
      * Main templates directory of the project (BASE_DIR/templates).
      * Adjust the following line to match your project structure.
      */
-    "../../templates/**/*.html",
+    // "../../templates/**/*.html",
+    './templates/portfolio/**/*.html',
 
     /*
      * Templates in other django apps (BASE_DIR/<any_app_name>/templates).
@@ -39,7 +40,9 @@ module.exports = {
      * Python: If you use Tailwind CSS classes in Python, uncomment the following line
      * and make sure the pattern below matches your project structure.
      */
-    // '../../**/*.py'
+    '../../**/*.py',
+    './portfolio/**/*.py', 
+    './main_site/**/*.py', 
   ],
   // theme: {
   //     extend: {},
