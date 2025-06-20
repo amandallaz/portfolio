@@ -868,6 +868,14 @@ select {
   margin-top: 0.5rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
 .block {
   display: block;
 }
@@ -960,6 +968,26 @@ select {
   height: 100vh;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
+.h-\[7rem\] {
+  height: 7rem;
+}
+
+.h-\[8rem\] {
+  height: 8rem;
+}
+
+.h-\[9rem\] {
+  height: 9rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
 .min-h-\[100px\] {
   min-height: 100px;
 }
@@ -982,6 +1010,26 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-\[7rem\] {
+  width: 7rem;
+}
+
+.w-\[8rem\] {
+  width: 8rem;
+}
+
+.w-\[9rem\] {
+  width: 9rem;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .max-w-4xl {
@@ -1158,6 +1206,11 @@ select {
   padding-bottom: 1rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pb-0 {
   padding-bottom: 0px;
 }
@@ -1210,12 +1263,21 @@ select {
   line-height: 1.25rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
 
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .uppercase {
