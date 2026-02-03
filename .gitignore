@@ -1,5 +1,5 @@
 # Python
-__pycache__
+__pycache__/
 
 # Virtual environment
 venv
@@ -10,7 +10,7 @@ venv
 *.log
 
 # Static & media 
-# media/ # small, will use in prod
+media/ 
 staticfiles/
 
 # Node and Tailwind
