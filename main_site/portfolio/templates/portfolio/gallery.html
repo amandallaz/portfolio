@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ slug|title }} - Photos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- favicon + external styles using GLIDE for photo slider -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css" />
+
+    <!-- compiled Tailwind CSS -->
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* glide layout: left arrow | image | right arrow */
+        .glide-layout {
+            display: grid;
+            grid-template-columns: 32px minmax(0, 1fr) 32px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* mobile: arrows go below image */
+        @media (max-width: 640px) {
+            .glide-layout {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "track track"
+                    "prev  next";
+            }
+
+            .glide-track-wrap {
+                grid-area: track;
+            }
+
+            .glide-prev {
+                grid-area: prev;
+                justify-self: end;
+            }
+
+            .glide-next {
+                grid-area: next;
+                justify-self: start;
+            }
+        }
+
+        /* prevents image container from shrinking inside grid */
+        .glide-track-wrap {
+            min-width: 0;
+        }
+
+        /* responsive image sizing */
+        .glide-img {
+            width: 100%;
+            max-height: 70vh;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <main class="flex-grow bg-[#fefaf3] pt-12">
+
+        <!-- NavBar -->
+        <nav
+            class="fixed top-0 left-0 w-full z-50 bg-[#fef3e2] text-[#1f1f1f] px-4 sm:px-6 py-2 shadow-md flex justify-between items-center">
+            <div class="ml-auto flex space-x-4">
+                <a href="{% url 'homepage' %}"
+                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a>
+                <a href="#about"
+                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">About</a>
+                <a href="#contact"
+                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Gallery  -->
+        <section class="pt-10 sm:pt-12 pb-12 px-6 min-h-screen">
+            <div class="max-w-6xl mx-auto text-center">
+                <h1 class="text-xl sm:text-2xl font-bold tracking-widest mb-6">
+                    {{ project.title }}
+                </h1>
+                <!-- Glide Carrousel -->
+
+                <div class="glide max-w-6xl mx-auto group">
+                    <div class="glide-layout">
+
+                        <!-- Left Arrow -->
+                        <div class="glide-prev" data-glide-el="controls">
+                            <button type="button" data-glide-dir="<" class="text-4xl font-light text-black/60
+                           opacity-0 group-hover:opacity-100
+                           hover:text-black hover:scale-110
+                           transition duration-300" aria-label="Previous">
+                                ←
+                            </button>
+                        </div>
+
+                        <!-- Image Track -->
+                        <div class="glide-track-wrap">
+                            <div class="glide__track" data-glide-el="track">
+                                <ul class="glide__slides">
+                                    {% for slide in slides %}
+                                    <li class="glide__slide">
+                                        <img src="{{ slide.url }}" class="glide-img"
+                                            alt="{{ slide.caption|default:project.title }}">
+                                        {% if slide.caption %}
+                                        <p class="mt-3 text-sm text-black/70">{{ slide.caption }}</p>
+                                        {% endif %}
+                                    </li>
+                                    <!-- fallback if no photos -->
+
+                                    {% empty %}
+                                    <li class="glide__slide">
+                                        <div class="p-8 text-black/60">No photos yet for this gallery.</div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Arrow -->
+                        <div class="glide-next" data-glide-el="controls">
+                            <button type="button" data-glide-dir=">" class="text-4xl font-light text-black/60
+                           opacity-0 group-hover:opacity-100
+                           hover:text-black hover:scale-110
+                           transition duration-300" aria-label="Next">
+                                →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: Contact -->
+    <footer id="contact" class="text-center py-6 bg-[#fef3e2] text-[#1f1f1f]">
+        <p class="mb-2 text-lg font-semibold">Work With Me</p>
+        <div class="flex justify-center space-x-6">
+
+            <div class="flex items-center space-x-6 text-[#1f1f1f]">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/amandalaz" target="_blank"
+                    class="transform transition-transform hover:text-[#2ec4b6]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" class="w-5 h-5">
+                        <path
+                            d="M100.28 448H7.4V148.9h92.88zM53.84 107C24.12 107 0 82.87 0 52.72 0 22.56 24.12-1.56 53.84-1.56s53.84 24.12 53.84 54.28C107.68 82.87 83.56 107 53.84 107zM447.92 448h-92.4V306.4c0-33.8-.7-77.3-47.1-77.3-47.1 0-54.3 36.8-54.3 74.8V448h-92.4V148.9h88.7v40.8h1.3c12.4-23.4 42.6-47.1 87.7-47.1 93.8 0 111 61.8 111 142.3V448z" />
+                    </svg>
+                </a>
+                <!-- GitHub -->
+                <a href="https://github.com/amandallaz" target="_blank"
+                    class="transform transition-transform hover:text-[#2ec4b6]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                        <path
+                            d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 008.1 11c.6.1.82-.26.82-.58v-2.26c-3.3.72-4-1.4-4-1.4-.55-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.1 1.83 1.24 1.83 1.24 1.1 1.9 2.88 1.35 3.58 1.03.1-.8.43-1.35.78-1.66-2.64-.3-5.42-1.32-5.42-5.87 0-1.3.47-2.36 1.24-3.2-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0C18.2 3.7 19.2 4 19.2 4c.66 1.66.25 2.88.13 3.18.77.84 1.23 1.9 1.23 3.2 0 4.56-2.8 5.56-5.46 5.86.44.38.83 1.1.83 2.22v3.3c0 .32.22.7.83.58A11.5 11.5 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z" />
+                    </svg>
+                </a>
+                <!-- Email -->
+                <a href="mailto:allazdev@gmail.com" class="transform transition-transform hover:text-[#2ec4b6]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                        <path
+                            d="M1.5 5.25A2.25 2.25 0 0 1 3.75 3h16.5a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 20.25 21H3.75A2.25 2.25 0 0 1 1.5 18.75V5.25Zm2.438.188A.75.75 0 0 0 3 6v.217l9 5.625 9-5.625V6a.75.75 0 0 0-.938-.562L12 10.447 3.938 5.876Z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Glide JS init -->
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        // initializes the carousel
+        new Glide('.glide', { type: 'carousel', perView: 1 }).mount();
+    </script>
+</body>
+
+</html>
