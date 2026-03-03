@@ -22,7 +22,7 @@
         body {
             font-family: 'DM Sans', sans-serif;
         }
-    
+
         /* ===== Overall Glide layout =====
            3-column grid: left arrow | image | right arrow
            Keeps arrows tight to image without affecting sizing */
@@ -32,61 +32,62 @@
             gap: 8px;
             align-items: center;
         }
-    
+
         /* Prevents image container from overflowing inside grid */
         .glide-track-wrap {
             min-width: 0;
         }
-    
+
         /* ===== Global sizing variable =====
            Controls the *max visible height* of images */
         :root {
             --viewer-h: clamp(320px, 55vh, 520px);
         }
-    
+
         /* ===== Image "viewer window" =====
            consistent frame that: vertically centers images */
         .slide-media {
-            height: clamp(480px, 75vh, 900px); /* main desktop sizing */
+            height: 75vh;
+            /* or 80vh if you want bigger */
             display: flex;
             align-items: center;
             justify-content: center;
         }
-    
+
         /* ===== Image behavior =====
            never exceed viewer height, scale responsively, preserve aspect ratio */
         .glide-img {
-            max-height: var(--viewer-h) !important;
+            max-height: 75vh;
             max-width: 100%;
             width: 100%;
-            height: clamp(420px, 65vh, 700px);
+            height: auto;
             object-fit: contain;
-            display: block;
         }
-    
+
         /* ===== Mobile layout adjustments =====
            arrows move BELOW image, slightly reduce image height */
         @media (max-width: 640px) {
             :root {
-                --viewer-h: 44vh; /* smaller viewing window on phones */
+                --viewer-h: 44vh;
+                /* smaller viewing window on phones */
             }
-    
+
             .glide-layout {
                 grid-template-columns: 1fr 1fr;
                 grid-template-areas:
                     "track track"
                     "prev  next";
             }
-    
+
             .glide-track-wrap {
                 grid-area: track;
             }
-    
+
             .glide-prev {
                 grid-area: prev;
                 justify-self: end;
             }
-    
+
             .glide-next {
                 grid-area: next;
                 justify-self: start;
@@ -112,21 +113,17 @@
         </nav>
 
         <!-- Gallery  -->
-        <section class="pt-10 sm:pt-12 pb-12 px-6 min-h-screen">
-            <div class="max-w-6xl mx-auto text-center">
-                <h1 class="text-xl sm:text-2xl font-bold tracking-widest mb-6">
-                    {{ project.title }}
-                </h1>
-                <!-- Glide Carrousel -->
+        <section class="pt-10 sm:pt-12 pb-10 px-3 sm:px-6 min-h-screen">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Glide Carousel -->
                 <div class="glide max-w-6xl mx-auto group">
                     <div class="glide-layout">
 
                         <!-- Left Arrow -->
                         <div class="glide-prev" data-glide-el="controls">
-                            <button type="button" data-glide-dir="<" class="text-4xl font-light text-black
-                           opacity-60 group-hover:opacity-100
-                           hover:text-black hover:scale-110
-                           transition duration-300" aria-label="Previous">
+                            <button type="button" data-glide-dir="<" class="text-4xl font-light text-black opacity-60 group-hover:opacity-100
+                             hover:scale-110 transition duration-300" aria-label="Previous">
                                 ←
                             </button>
                         </div>
@@ -139,16 +136,28 @@
                                     <li class="glide__slide">
                                         <div class="slide-media">
                                             <img src="{{ slide.url }}" class="glide-img"
-                                                alt="{{ slide.caption|default:project.title }}">
+                                                alt="{{ slide.caption|default:project.title }}" />
                                         </div>
+
+                                        <!-- Title directly under image -->
+                                        <div class="mt-2 text-center">
+                                            <h1
+                                                class="text-[14px] sm:text-[15px] font-semibold tracking-[0.12em] uppercase text-slate-900">
+                                                {{ project.title }}
+                                            </h1>
+                                        </div>
+
                                         {% if slide.caption %}
-                                        <p class="mt-3 text-sm text-black opacity-70">{{ slide.caption }}</p>
+                                        <p class="mt-1 text-[12px] text-black/60 text-center">
+                                            {{ slide.caption }}
+                                        </p>
                                         {% endif %}
                                     </li>
-                                    <!-- fallback if no photos -->
                                     {% empty %}
                                     <li class="glide__slide">
-                                        <div class="p-8 text-black opacity-60">No photos yet for this gallery.</div>
+                                        <div class="p-8 text-black opacity-60 text-center">
+                                            No photos yet for this gallery.
+                                        </div>
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -157,15 +166,15 @@
 
                         <!-- Right Arrow -->
                         <div class="glide-next" data-glide-el="controls">
-                            <button type="button" data-glide-dir=">" class="text-4xl font-light text-black
-                           opacity-60 group-hover:opacity-100
-                           hover:text-black hover:scale-110
-                           transition duration-300" aria-label="Next">
+                            <button type="button" data-glide-dir=">" class="text-4xl font-light text-black opacity-60 group-hover:opacity-100
+                             hover:scale-110 transition duration-300" aria-label="Next">
                                 →
                             </button>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </section>
     </main>

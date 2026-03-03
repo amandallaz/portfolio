@@ -77,8 +77,8 @@
     </header>
 
     <!-- Project Cards -->
-    <div id="project-grid" class="pt-8 sm:pt-10 lg:pt-12 pb-24 sm:pb-28 lg:pb-32 px-6 sm:px-8 lg:px-12">
-        <main class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div id="project-grid" class="pt-8 sm:pt-10 lg:pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+        <main class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
             {% for project in projects %}
             {% if project.category|lower == "photos" %}
             <a class="block group cursor-pointer" href="{% url 'gallery' project.title|slugify %}">
@@ -86,28 +86,29 @@
                 <a class="block group" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
                     {% endif %}
 
-                    <div class="project-card flex flex-col gap-4 transition-transform duration-300 group-hover:-translate-y-[2px]"
+                    <div class="project-card bg-[#fdfaf3] shadow p-6 flex flex-col gap-2 transition-all duration-300 hover:shadow-lg group-hover:-translate-y-[2px]"
                         data-category="{{ project.category|lower }}">
-                        <div class="rounded-sm bg-[#fdfaf3] p-[3px] ring-1 ring-black/5">
-                            {% if project.image %}
-                            <div class="aspect-[4/5] w-full overflow-hidden rounded-sm">
-                                <img src="{{ project.image.url }}" alt="{{ project.title }}"
-                                    class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]">
-                            </div>
-                            {% endif %}
 
-                            <div class="px-3 pt-3 pb-4">
-                                <h3
-                                    class="text-[16px] sm:text-[17px] font-medium tracking-[0.01em] text-slate-900 leading-snug">
-                                    {{ project.title }}
-                                </h3>
-                                <!-- {% if project.category %}
-                                <p class="mt-1 text-[12px] tracking-[0.14em] uppercase text-slate-900/60">
-                                    {{ project.category }}
-                                </p>
-                                {% endif %} -->
-                            </div>
+                        {% if project.image %}
+                        <div class="aspect-[1/1] w-full overflow-hidden rounded-sm">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                style="object-position: 50% 35%;" />
                         </div>
+                        {% endif %}
+
+                        <div class="px-3 pt-3 pb-4 min-h-14">
+                            <h3 class="text-sm font-medium tracking-[0.01em] text-slate-900 leading-snug">
+                                {{ project.title }}
+                            </h3>
+
+                            {% if project.category %}
+                            <p class="mt-1 text-[12px] tracking-[0.14em] uppercase text-slate-900/60">
+                                {{ project.category }}
+                            </p>
+                            {% endif %}
+                        </div>
+
                     </div>
                 </a>
                 {% endfor %}
