@@ -16,53 +16,59 @@
     </style>
 </head>
 
-<body class="flex flex-col min-h-screen">
-    <main class="flex-grow bg-[#fefaf3]">
+<body class="bg-[#fefaf3] min-h-screen flex flex-col">
 
-        <nav
-            class="fixed top-0 left-0 w-full z-50 bg-[#fef3e2] text-[#1f1f1f] px-4 sm:px-6 py-2 shadow-md flex justify-between items-center">
+    <!-- Nav Bar -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 bg-[#fef3e2] text-[#1f1f1f] px-4 sm:px-6 py-2 shadow-md flex justify-between items-center">
+        <div class="ml-auto flex items-center gap-4 whitespace-nowrap">
+            <a href="{% url 'homepage' %}"
+                class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a>
+            <a href="#contact"
+                class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Contact</a>
+        </div>
+    </nav>
 
-            <!-- Links -->
-            <div class="ml-auto flex space-x-4">
-                <a href="{% url 'homepage' %}"
-                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a>
-                <a href="#about"
-                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">About</a>
-                <a href="#contact"
-                    class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Top Header -->
-        <div id="about" class="bg-[#a3defc] h-48 w-full"></div>
-
-        <!-- About Section -->
-        <section class="bg-[#fefaf3] py-12 px-6">
-            <div class="m-4 grid grid-cols-1 sm:grid-cols-12 gap-4">
-                <div class="sm:col-span-3 min-h-[100px] flex justify-center">
-                    <img src="/media/project_images/profilenobackground.png" alt="About Image"
-                        class="w-[9rem] h-[9rem] rounded-full shadow-lg object-cover" />
-                </div>
-                <div class="sm:col-span-9 min-h-[100px]">
-                    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-                    <p class="mb-4">
-                        Hi! I’m a data scientist with a background in Economics from Tufts University. My interest in
-                        women’s health data in emerging markets led to my first role, collecting global pricing data to
-                        bring transparency to government reporting.
-                    </p>
-                    <p>
-                        After a few early-stage startups in San Francisco and five years at Meta honing my skills in
-                        data engineering and storytelling, I’m now exploring the space where data meets design.
-                    </p>
-                </div>
-
-            </div>
-        </section>
+    <main class="flex-grow">
+       <!-- About Hero -->
+<section class="bg-[#a3defc] pt-24 pb-14 text-center">
+    <img src="/media/project_images/profilenobackground.png" alt="Amanda Laz"
+      class="w-24 h-24 mx-auto rounded-full object-cover shadow-sm ring-1 ring-black/10" />
+  
+    <h1 class="mt-4 text-xl sm:text-2xl font-medium tracking-tight text-slate-900">
+      About Me
+    </h1>
+  </section>
+  
+  <section class="bg-[#fefaf3] pt-14 pb-16">
+    <div class="max-w-2xl mx-auto px-6 sm:px-10">
+  
+      <div class="space-y-8 text-[16px] sm:text-[17px] leading-7 text-slate-700">
+  
+        <p>
+            Hi! I’m a data scientist with a background in Economics from Tufts University. My studies in
+            women’s health in emerging markets led to my first role collecting global food pricing data to
+            improve transparency in government reporting.
+          </p>
+        
+          <p>
+            After working at early-stage startups in San Francisco and spending five years at Meta, I built
+            a strong foundation in data analysis, data engineering, and storytelling.
+          </p>
+        
+          <p class="text-slate-800">
+            Now I’m interested in where data meets design, building tools and exploring ideas that make complex information easier to understand.
+          </p>
+  
+      </div>
+  
+    </div>
+  </section>
     </main>
 
     <!-- Filler -->
-    <div class="bg-[#a3defc] h-48 w-full">
-    </div>
+    <!-- <div class="bg-[#a3defc] h-48 w-full">
+    </div> -->
 
 
     <!-- Footer: Contact -->

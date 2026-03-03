@@ -100,8 +100,8 @@
 
                         <!-- Left Arrow -->
                         <div class="glide-prev" data-glide-el="controls">
-                            <button type="button" data-glide-dir="<" class="text-4xl font-light text-black/60
-                           opacity-0 group-hover:opacity-100
+                            <button type="button" data-glide-dir="<" class="text-4xl font-light text-black
+                           opacity-60 group-hover:opacity-100
                            hover:text-black hover:scale-110
                            transition duration-300" aria-label="Previous">
                                 ←
@@ -117,14 +117,14 @@
                                         <img src="{{ slide.url }}" class="glide-img"
                                             alt="{{ slide.caption|default:project.title }}">
                                         {% if slide.caption %}
-                                        <p class="mt-3 text-sm text-black/70">{{ slide.caption }}</p>
+                                        <p class="mt-3 text-sm text-black opacity-70">{{ slide.caption }}</p>
                                         {% endif %}
                                     </li>
                                     <!-- fallback if no photos -->
 
                                     {% empty %}
                                     <li class="glide__slide">
-                                        <div class="p-8 text-black/60">No photos yet for this gallery.</div>
+                                        <div class="p-8 text-black opacity-60">No photos yet for this gallery.</div>
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -133,8 +133,8 @@
 
                         <!-- Right Arrow -->
                         <div class="glide-next" data-glide-el="controls">
-                            <button type="button" data-glide-dir=">" class="text-4xl font-light text-black/60
-                           opacity-0 group-hover:opacity-100
+                            <button type="button" data-glide-dir=">" class="text-4xl font-light text-black
+                           opacity-60 group-hover:opacity-100
                            hover:text-black hover:scale-110
                            transition duration-300" aria-label="Next">
                                 →
