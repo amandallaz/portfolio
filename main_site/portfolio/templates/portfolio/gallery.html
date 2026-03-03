@@ -18,55 +18,79 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <style>
+        /* ===== Base type ===== */
         body {
             font-family: 'DM Sans', sans-serif;
         }
-
-        /* glide layout: left arrow | image | right arrow */
+    
+        /* ===== Overall Glide layout =====
+           3-column grid: left arrow | image | right arrow
+           Keeps arrows tight to image without affecting sizing */
         .glide-layout {
             display: grid;
             grid-template-columns: 32px minmax(0, 1fr) 32px;
             gap: 8px;
             align-items: center;
         }
-
-        /* mobile: arrows go below image */
+    
+        /* Prevents image container from overflowing inside grid */
+        .glide-track-wrap {
+            min-width: 0;
+        }
+    
+        /* ===== Global sizing variable =====
+           Controls the *max visible height* of images */
+        :root {
+            --viewer-h: clamp(320px, 55vh, 520px);
+        }
+    
+        /* ===== Image "viewer window" =====
+           consistent frame that: vertically centers images */
+        .slide-media {
+            height: clamp(480px, 75vh, 900px); /* main desktop sizing */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        /* ===== Image behavior =====
+           never exceed viewer height, scale responsively, preserve aspect ratio */
+        .glide-img {
+            max-height: var(--viewer-h) !important;
+            max-width: 100%;
+            width: 100%;
+            height: clamp(420px, 65vh, 700px);
+            object-fit: contain;
+            display: block;
+        }
+    
+        /* ===== Mobile layout adjustments =====
+           arrows move BELOW image, slightly reduce image height */
         @media (max-width: 640px) {
+            :root {
+                --viewer-h: 44vh; /* smaller viewing window on phones */
+            }
+    
             .glide-layout {
                 grid-template-columns: 1fr 1fr;
                 grid-template-areas:
                     "track track"
                     "prev  next";
             }
-
+    
             .glide-track-wrap {
                 grid-area: track;
             }
-
+    
             .glide-prev {
                 grid-area: prev;
                 justify-self: end;
             }
-
+    
             .glide-next {
                 grid-area: next;
                 justify-self: start;
             }
-        }
-
-        /* prevents image container from shrinking inside grid */
-        .glide-track-wrap {
-            min-width: 0;
-        }
-
-        /* responsive image sizing */
-        .glide-img {
-            width: 100%;
-            max-height: 70vh;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-            display: block;
         }
     </style>
 </head>
@@ -94,7 +118,6 @@
                     {{ project.title }}
                 </h1>
                 <!-- Glide Carrousel -->
-
                 <div class="glide max-w-6xl mx-auto group">
                     <div class="glide-layout">
 
@@ -114,14 +137,15 @@
                                 <ul class="glide__slides">
                                     {% for slide in slides %}
                                     <li class="glide__slide">
-                                        <img src="{{ slide.url }}" class="glide-img"
-                                            alt="{{ slide.caption|default:project.title }}">
+                                        <div class="slide-media">
+                                            <img src="{{ slide.url }}" class="glide-img"
+                                                alt="{{ slide.caption|default:project.title }}">
+                                        </div>
                                         {% if slide.caption %}
                                         <p class="mt-3 text-sm text-black opacity-70">{{ slide.caption }}</p>
                                         {% endif %}
                                     </li>
                                     <!-- fallback if no photos -->
-
                                     {% empty %}
                                     <li class="glide__slide">
                                         <div class="p-8 text-black opacity-60">No photos yet for this gallery.</div>

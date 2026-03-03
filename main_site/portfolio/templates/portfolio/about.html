@@ -24,52 +24,49 @@
         <div class="ml-auto flex items-center gap-4 whitespace-nowrap">
             <a href="{% url 'homepage' %}"
                 class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a>
+            <a href="{% url 'about' %}"
+                class="transform transition-transform duration-300 hover:rotate-3 hover:underline">About</a>
             <a href="#contact"
                 class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Contact</a>
         </div>
     </nav>
 
     <main class="flex-grow">
-       <!-- About Hero -->
-<section class="bg-[#a3defc] pt-24 pb-14 text-center">
-    <img src="/media/project_images/profilenobackground.png" alt="Amanda Laz"
-      class="w-24 h-24 mx-auto rounded-full object-cover shadow-sm ring-1 ring-black/10" />
-  
-    <h1 class="mt-4 text-xl sm:text-2xl font-medium tracking-tight text-slate-900">
-      About Me
-    </h1>
-  </section>
-  
-  <section class="bg-[#fefaf3] pt-14 pb-16">
-    <div class="max-w-2xl mx-auto px-6 sm:px-10">
-  
-      <div class="space-y-8 text-[16px] sm:text-[17px] leading-7 text-slate-700">
-  
-        <p>
-            Hi! I’m a data scientist with a background in Economics from Tufts University. My studies in
-            women’s health in emerging markets led to my first role collecting global food pricing data to
-            improve transparency in government reporting.
-          </p>
-        
-          <p>
-            After working at early-stage startups in San Francisco and spending five years at Meta, I built
-            a strong foundation in data analysis, data engineering, and storytelling.
-          </p>
-        
-          <p class="text-slate-800">
-            Now I’m interested in where data meets design, building tools and exploring ideas that make complex information easier to understand.
-          </p>
-  
-      </div>
-  
-    </div>
-  </section>
+        <!-- About Me -->
+        <section class="bg-[#a3defc] pt-24 pb-14 text-center">
+            <img src="/media/project_images/profilenobackground.png" alt="Amanda Laz"
+                class="w-24 h-24 mx-auto rounded-full object-cover shadow-sm ring-1 ring-black/10" />
+            <h1 class="mt-4 text-xl sm:text-2xl font-medium tracking-[0.08em] text-slate-900">
+                About Me
+            </h1>
+        </section>
+
+        <section class="bg-[#fefaf3] pt-14 pb-16">
+            <div class="max-w-2xl mx-auto px-6 sm:px-10">
+
+                <div class="space-y-8 text-[16px] sm:text-[17px] leading-7 text-slate-700">
+
+                    <p>
+                        Hi! I’m a data scientist with a background in Economics from Tufts University. My studies in
+                        women’s health in emerging markets led to my first role collecting global food pricing data to
+                        improve transparency in government reporting.
+                    </p>
+                    
+                    <p>
+                        After working at early-stage startups in San Francisco and spending five years at Meta, I built
+                        a strong foundation in data analysis, data engineering, and storytelling.
+                    </p>
+
+                    <p class="text-slate-800">
+                        Now I’m interested in where data meets design, building tools and exploring ideas that make
+                        complex information easier to understand.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
     </main>
-
-    <!-- Filler -->
-    <!-- <div class="bg-[#a3defc] h-48 w-full">
-    </div> -->
-
 
     <!-- Footer: Contact -->
     <footer id="contact" class="text-center py-6 bg-[#fef3e2] text-[#1f1f1f]">

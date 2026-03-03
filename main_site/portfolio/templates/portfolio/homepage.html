@@ -5,7 +5,6 @@
 <head>
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
 
-
     <meta charset="UTF-8">
     <title>Amanda Laz - Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,11 +21,10 @@
     <!-- Nav Bar -->
     <nav aria-label="Primary"
         class="fixed top-0 left-0 w-full z-50 bg-[#fef3e2] text-[#1f1f1f] px-4 sm:px-6 py-2 shadow-md flex justify-between items-center">
-
         <!-- Links -->
         <div class="ml-auto flex space-x-4">
-            <!-- <a href="{% url 'homepage' %}"
-                class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a> -->
+            <a href="{% url 'homepage' %}"
+                class="transform transition-transform duration-300 hover:rotate-3 hover:underline">Home</a>
             <a href="{% url 'about' %}"
                 class="transform transition-transform duration-300 hover:rotate-3 hover:underline">About</a>
             <a href="#contact"
@@ -45,66 +43,76 @@
                     <span>LAZ</span>
                 </h1>
                 <p class="mt-3 text-base sm:text-lg text-gray-700 font-light max-w-xl mx-auto tracking-[0.02em]">
-                    Portfolio of data, design and photography
+                    Portfolio of data, design & photography
                 </p>
             </div>
         </div>
 
         <!-- Filter Buttons -->
         <div class="w-full bg-[#bfe6fb]">
-            <div class="w-full py-2">
+            <div class="w-full py-2 overflow-x-auto">
+                <div class="
+                    mt-2 flex justify-center
+                    gap-8 sm:gap-16
+                    px-4
+                    text-[11px] sm:text-[13px]
+                    tracking-[0.10em] sm:tracking-[0.14em]
+                    font-medium
+                    uppercase whitespace-nowrap
+                ">
+                    <a href="#" class="filter-btn text-slate-900/60 hover:text-slate-900 transition-all duration-200"
+                        data-category="all">All</a>
 
-                <div class="mt-2 flex justify-center gap-16 text-[13px] tracking-[0.14em] uppercase">                    
-                    <a href="#" class="filter-btn text-slate-900/40 hover:text-slate-900 hover:scale-105 transition-all duration-200" data-category="all">
-                        All
-                      </a>
-                      
-                      <a href="#" class="filter-btn text-slate-900/40 hover:text-slate-900 hover:scale-105 transition-all duration-200" data-category="apps">
-                        Builds
-                      </a>
-                      
-                      <a href="#" class="filter-btn text-slate-900/40 hover:text-slate-900 hover:scale-105 transition-all duration-200" data-category="projects">
-                        Insights
-                      </a>
-                      
-                      <a href="#" class="filter-btn text-slate-900/40 hover:text-slate-900 hover:scale-105 transition-all duration-200" data-category="photos">
-                        Photos
-                      </a>
-                  
-                  </div>
+                    <a href="#" class="filter-btn text-slate-900/60 hover:text-slate-900 transition-all duration-200"
+                        data-category="apps">Builds</a>
+
+                    <a href="#" class="filter-btn text-slate-900/60 hover:text-slate-900 transition-all duration-200"
+                        data-category="projects">Insights</a>
+
+                    <a href="#" class="filter-btn text-slate-900/60 hover:text-slate-900 transition-all duration-200"
+                        data-category="photos">Photos</a>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Project Cards -->
     <div id="project-grid" class="pt-8 sm:pt-10 lg:pt-12 pb-24 sm:pb-28 lg:pb-32 px-6 sm:px-8 lg:px-12">
-        <main class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
+        <main class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {% for project in projects %}
             {% if project.category|lower == "photos" %}
             <a class="block group cursor-pointer" href="{% url 'gallery' project.title|slugify %}">
                 {% else %}
                 <a class="block group" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
                     {% endif %}
-                    <div class="project-card flex flex-col gap-3 transition-transform duration-300 group-hover:-translate-y-[2px]"
-                    data-category="{{ project.category|lower }}">
 
-                        {% if project.image %}
+                    <div class="project-card flex flex-col gap-4 transition-transform duration-300 group-hover:-translate-y-[2px]"
+                        data-category="{{ project.category|lower }}">
                         <div class="rounded-sm bg-[#fdfaf3] p-[3px] ring-1 ring-black/5">
-                            <img src="{{ project.image.url }}" alt="{{ project.title }}"
-                                class="w-full h-52 object-cover object-center rounded-sm transition-transform duration-300 group-hover:scale-[1.02]">
-                        </div>
-                        {% endif %}
+                            {% if project.image %}
+                            <div class="aspect-[4/5] w-full overflow-hidden rounded-sm">
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                                    class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]">
+                            </div>
+                            {% endif %}
 
-                        <h3 class="text-center text-[15px] tracking-[0.01em] text-gray-800 font-medium leading-snug">
-                            {{ project.title }}
-                        </h3>
+                            <div class="px-3 pt-3 pb-4">
+                                <h3
+                                    class="text-[16px] sm:text-[17px] font-medium tracking-[0.01em] text-slate-900 leading-snug">
+                                    {{ project.title }}
+                                </h3>
+                                <!-- {% if project.category %}
+                                <p class="mt-1 text-[12px] tracking-[0.14em] uppercase text-slate-900/60">
+                                    {{ project.category }}
+                                </p>
+                                {% endif %} -->
+                            </div>
+                        </div>
                     </div>
                 </a>
                 {% endfor %}
         </main>
     </div>
-
 
     <!-- JavaScript for Filtering -->
     <script>
@@ -112,14 +120,22 @@
         const cardLinks = document.querySelectorAll('#project-grid a');
 
         filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
                 const category = btn.getAttribute('data-category');
 
-                filterButtons.forEach(b => b.classList.remove('text-slate-900'));
-                filterButtons.forEach(b => b.classList.add('text-slate-900/60'));
-                btn.classList.remove('text-slate-900/60');
-                btn.classList.add('text-slate-900');
+                // reset all buttons
+                filterButtons.forEach(b => {
+                    b.classList.remove('text-slate-900', 'underline');
+                    b.classList.add('text-slate-900/60');
+                });
 
+                // activate clicked
+                btn.classList.remove('text-slate-900/60');
+                btn.classList.add('text-slate-900', 'underline');
+
+                // filtering 
                 cardLinks.forEach(link => {
                     const card = link.querySelector('.project-card');
                     const matches = category === 'all' || card.dataset.category === category;
@@ -128,7 +144,6 @@
             });
         });
     </script>
-
 
     <!-- Footer: Contact -->
     <footer id="contact" class="text-center py-6 bg-[#fef3e2] text-[#1f1f1f]">
@@ -162,11 +177,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Debug -->
-    {% if debug %}
-    <script src="http://localhost:8000/static/browser-reload/reload.js"></script>
-    {% endif %}
 </body>
 
 </html>
